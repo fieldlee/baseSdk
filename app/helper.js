@@ -301,6 +301,7 @@ var registerUser = function (username, userOrg, isJson) {
 				logger.info('Successfully loaded member from persistence');
 				var response = {
 					success: false,
+					certificate: user._identity._certificate,
 					message: ""
 				};
 				return response;
