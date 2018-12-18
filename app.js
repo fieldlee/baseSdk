@@ -10,6 +10,7 @@ let bodyParser = require('body-parser');
 let http = require('http');
 let util = require('util');
 var fs = require('fs-extra');
+var sleep = require('sleep');
 
 let expressJWT = require('express-jwt');
 let jwt = require('jsonwebtoken');
@@ -156,6 +157,7 @@ app.post('/api/v1/token',  function(req, res) {
 				logger.debug('Successfully registered the username %s for organization %s',username,orgName);
 				response.token = token;
 				if (creatorFlag == 1){
+					sleep(1);
 					var file = "/var/fabric-client-kvs_" + orgName + "/" + username
 					var result=JSON.parse(fs.readFileSync(file));
 					response.certificate = result.enrollment.identity.certificate
@@ -173,6 +175,7 @@ app.post('/api/v1/token',  function(req, res) {
 				logger.debug('Successfully registered the username %s for organization %s',username,orgName);
 				response.token = token;
 				if (creatorFlag == 1){
+					sleep(1);
 					var file = "/var/fabric-client-kvs_" + orgName + "/" + username
 					var result=JSON.parse(fs.readFileSync(file));
 					response.certificate = result.enrollment.identity.certificate

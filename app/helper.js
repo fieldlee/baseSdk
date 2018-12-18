@@ -301,9 +301,8 @@ var registerUser = function (username, userOrg, isJson) {
 				logger.info('Successfully loaded member from persistence');
 				var response = {
 					success: false,
-					message: "已注册"
+					message: ""
 				};
-				logger.info("1");
 				return response;
 			} else {
 				let caClient = caClients[userOrg];
