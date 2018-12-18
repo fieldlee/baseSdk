@@ -1,7 +1,7 @@
 // log4js
 let log4js = require('log4js');
 let logger = log4js.getLogger('HyperledgerWebApp');
-logger.setLevel('ERROR');
+logger.setLevel('DEBUG');
 // express
 let express = require('express');
 let session = require('express-session');
