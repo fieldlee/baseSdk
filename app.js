@@ -149,22 +149,41 @@ app.post('/api/v1/token',  function(req, res) {
         orgName: orgName
     }, app.get('secret'));
 
-    helper.getRegisteredUsers(username, orgName, true).then(function(response){
-		logger.debug('-- returned from registering the username %s for organization %s',username,orgName);
-		if (response && typeof response !== 'string') {
-			logger.debug('Successfully registered the username %s for organization %s',username,orgName);
-			response.token = token;
-			if (creatorFlag == 1){
-				var file = "/var/fabric-client-kvs_" + orgName + "/" + username
-				var result=JSON.parse(fs.readFileSync(file));
-				response.certificate = result.enrollment.identity.certificate
+	if (creatorFlag == 1){
+		helper.registerUser(username, orgName, true).then(function(response){
+			logger.debug('-- returned from registering the username %s for organization %s',username,orgName);
+			if (response && typeof response !== 'string') {
+				logger.debug('Successfully registered the username %s for organization %s',username,orgName);
+				response.token = token;
+				if (creatorFlag == 1){
+					var file = "/var/fabric-client-kvs_" + orgName + "/" + username
+					var result=JSON.parse(fs.readFileSync(file));
+					response.certificate = result.enrollment.identity.certificate
+				}
+				res.json(response);
+			} else {
+				logger.debug('Failed to register the username %s for organization %s with::%s',username,orgName,response);
+				res.json(reqUtils.getErrorMsg(response,500));
 			}
-			res.json(response);
-		} else {
-			logger.debug('Failed to register the username %s for organization %s with::%s',username,orgName,response);
-			res.json(reqUtils.getErrorMsg(response,500));
-		}
-	});
+		});
+	}else{
+		helper.getRegisteredUsers(username, orgName, true).then(function(response){
+			logger.debug('-- returned from registering the username %s for organization %s',username,orgName);
+			if (response && typeof response !== 'string') {
+				logger.debug('Successfully registered the username %s for organization %s',username,orgName);
+				response.token = token;
+				if (creatorFlag == 1){
+					var file = "/var/fabric-client-kvs_" + orgName + "/" + username
+					var result=JSON.parse(fs.readFileSync(file));
+					response.certificate = result.enrollment.identity.certificate
+				}
+				res.json(response);
+			} else {
+				logger.debug('Failed to register the username %s for organization %s with::%s',username,orgName,response);
+				res.json(reqUtils.getErrorMsg(response,500));
+			}
+		});
+	}
 });
 // Create Channel
 app.post('/channels', function (req, res) {

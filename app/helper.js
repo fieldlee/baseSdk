@@ -425,8 +425,8 @@ var loginRegisteredUser = function (username, secret, userOrg) {
 };
 
 var getRegisteredUsers = function (username, userOrg, isJson) {
-	/*** 
-		var member;
+
+	var member;
 	var client = getClientForOrg(userOrg);
 	var enrollmentSecret = null;
 	return hfc.newDefaultKeyValueStore({
@@ -493,7 +493,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 		logger.error(util.format('Failed to get registered user: %s, error: %s', username, err.stack ? err.stack : err));
 		return '' + err;
 	});
-	*/
+/**** 
 	logger.debug("=============start");
 	// try {
 	logger.debug("=============start1:");
@@ -560,6 +560,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 	//     logger.error('Failed to get registered user: %s with error: %s', username, error.toString());
 	//     return 'failed '+error.toString();
 	// }
+	*/
 };
 
 
