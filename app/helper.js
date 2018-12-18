@@ -494,6 +494,7 @@ return hfc.newDefaultKeyValueStore({
 	return '' + err;
 });
 */
+	logger.debug("=============start");
 	try {
         var client = await getClientForOrg(userOrg);
         logger.debug('Successfully initialized the credential stores');
