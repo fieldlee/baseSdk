@@ -155,7 +155,7 @@ app.post('/api/v1/token', async function(req, res) {
         logger.debug('Successfully registered the username %s for organization %s',username,orgName);
         response.token = token;
         if (creatorFlag == 1){
-            var file = "/var/fabric-client-kv-" + orgName.toLowerCase() + "/" + username
+            var file = "/var/fabric-client-kv-" + orgName + "/" + username
             var result=JSON.parse(fs.readFileSync(file));
             response.certificate = result.enrollment.identity.certificate
         }
