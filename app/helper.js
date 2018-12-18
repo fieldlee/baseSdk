@@ -436,10 +436,8 @@ var getRegisteredUsers = async function (username, userOrg, isJson) {
             logger.info('Successfully loaded member from persistence');
         } else {
             // user was not enrolled, so we will need an admin user object to register
-            logger.info('User %s was not enrolled, so we will need an admin user object to register',username);
-            var admins = hfc.getConfigSetting('admins');
 
-            let adminUserObj = await client.setUserContext({username: admins[0].username, password: admins[0].secret});
+            let adminUserObj = await client.setUserContext({username: "admin", password: "adminpw"});
             let caClient = client.getCertificateAuthority();
 
             let affiliationService = caClient.newAffiliationService();
