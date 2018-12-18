@@ -224,7 +224,7 @@ var getChannelForOrg = function (channelName, org) {
 	return null;
 };
 
-var getClientForOrg = function (org) {
+var getClientForOrg = async function (org) {
 	return clients[org];
 };
 
