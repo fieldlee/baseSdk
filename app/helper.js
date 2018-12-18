@@ -495,7 +495,7 @@ return hfc.newDefaultKeyValueStore({
 });
 */
 	logger.debug("=============start");
-	try {
+	// try {
 		logger.debug("=============start1:");
         var client = await getClientForOrg(userOrg);
         logger.debug('Successfully initialized the credential stores');
@@ -540,12 +540,12 @@ return hfc.newDefaultKeyValueStore({
                 return reqUtils.getResponse(username + ' enrolled Successfully',200);;
             }
         } else {
-            throw new Error('User was not enrolled ');
+            // throw new Error('User was not enrolled ');
         }
-    } catch(error) {
-        logger.error('Failed to get registered user: %s with error: %s', username, error.toString());
-        return 'failed '+error.toString();
-    }
+    // } catch(error) {
+    //     logger.error('Failed to get registered user: %s with error: %s', username, error.toString());
+    //     return 'failed '+error.toString();
+    // }
 };
 
 
