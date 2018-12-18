@@ -156,12 +156,12 @@ app.post('/api/v1/token',  function(req, res) {
 			if (response && typeof response !== 'string') {
 				logger.debug('Successfully registered the username %s for organization %s',username,orgName);
 				response.token = token;
-				if (creatorFlag == 1){
-					sleep.sleep(1);
-					var file = "/var/fabric-client-kvs_" + orgName + "/" + username
-					var result=JSON.parse(fs.readFileSync(file));
-					response.certificate = result.enrollment.identity.certificate
-				}
+				// if (creatorFlag == 1){
+				// 	sleep.sleep(1);
+				// 	var file = "/var/fabric-client-kvs_" + orgName + "/" + username
+				// 	var result=JSON.parse(fs.readFileSync(file));
+				// 	response.certificate = result.enrollment.identity.certificate
+				// }
 				res.json(response);
 			} else {
 				logger.debug('Failed to register the username %s for organization %s with::%s',username,orgName,response);
@@ -174,12 +174,12 @@ app.post('/api/v1/token',  function(req, res) {
 			if (response && typeof response !== 'string') {
 				logger.debug('Successfully registered the username %s for organization %s',username,orgName);
 				response.token = token;
-				if (creatorFlag == 1){
-					sleep.sleep(1);
-					var file = "/var/fabric-client-kvs_" + orgName + "/" + username
-					var result=JSON.parse(fs.readFileSync(file));
-					response.certificate = result.enrollment.identity.certificate
-				}
+				// if (creatorFlag == 1){
+				// 	sleep.sleep(1);
+				// 	var file = "/var/fabric-client-kvs_" + orgName + "/" + username
+				// 	var result=JSON.parse(fs.readFileSync(file));
+				// 	response.certificate = result.enrollment.identity.certificate
+				// }
 				res.json(response);
 			} else {
 				logger.debug('Failed to register the username %s for organization %s with::%s',username,orgName,response);
