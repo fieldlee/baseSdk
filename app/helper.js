@@ -431,7 +431,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 	return hfc.newDefaultKeyValueStore({
 		path: getKeyStoreForOrg(getOrgName(userOrg))
 	}).then((store) => {
-		console.log(client);
+		// console.log(client);
 		client.setStateStore(store);
 		// clearing the user context before switching
 		client._userContext = null;
