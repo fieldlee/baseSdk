@@ -465,7 +465,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 						return message;
 					}
 					logger.debug(username + ' enrolled successfully');
-					logger.debug(username + ' INFO:'+JSON.stringify(message));
+					// logger.debug(username + ' INFO:'+JSON.stringify(message));
 					member = new User(username);
 					member._enrollmentSecret = enrollmentSecret;
 					return member.setEnrollment(message.key, message.certificate, getMspID(userOrg));
