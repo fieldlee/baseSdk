@@ -16,7 +16,7 @@
 'use strict';
 var log4js = require('log4js');
 var logger = log4js.getLogger('Helper');
-logger.setLevel('INFO');
+logger.setLevel('DEBUG');
 
 var path = require('path');
 var util = require('util');
