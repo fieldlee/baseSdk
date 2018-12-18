@@ -1,0 +1,21 @@
+#Ignore all node modules:
+/node_modules
+
+/config.json
+
+#Ignore decrypt keys used with encrypted passwords:
+/config/security/configDecryptKeys.json
+
+#Ignore all .* settings files in root (e.g. sublime)
+/.*
+#But allow gitignore settings's file
+!.gitignore
+#Allow github template folder:
+!/.github
+#Allow Eclipse IDE settings
+!.project
+!/.settings
+#But allow eslint settings
+!.eslintignore
+!.eslintrc.js
+
