@@ -439,7 +439,12 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 		return client.getUserContext(username, true).then((user) => {
 			if (user && user.isEnrolled()) {
 				logger.info('Successfully loaded member from persistence');
-				return user;
+				var response = {
+					success: false,
+					certificate: user._identity._certificate,
+					message: ""
+				};
+				return response;
 			} else {
 				let caClient = caClients[userOrg];
 				return getAdminUser(userOrg).then(function (adminUserObj) {
@@ -484,6 +489,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 			var response = {
 				success: true,
 				secret: user._enrollmentSecret,
+				certificate: user._identity._certificate,
 				message: username + ' enrolled Successfully',
 			};
 			return response;
