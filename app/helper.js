@@ -507,7 +507,8 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 		} else {
 			// user was not enrolled, so we will need an admin user object to register
 			logger.debug("=============1");
-			client.setUserContext({ username: "admin", password: "adminpw" }).then(function (adminUserObj) {
+			console.log(client);
+			client.setUserContext({username: "admin", password: "adminpw" }).then(function (adminUserObj) {
 				logger.debug("=============2");
 				let caClient = client.getCertificateAuthority();
 				logger.debug("=============3");
