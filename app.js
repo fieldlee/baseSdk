@@ -9,6 +9,7 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let http = require('http');
 let util = require('util');
+var fs = require('fs-extra');
 
 let expressJWT = require('express-jwt');
 let jwt = require('jsonwebtoken');
