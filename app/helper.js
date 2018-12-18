@@ -486,6 +486,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 		});
 	}).then((user) => {
 		if (isJson && isJson === true) {
+			console.log(user);
 			var response = {
 				success: true,
 				secret: user._enrollmentSecret,
