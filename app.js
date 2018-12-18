@@ -148,7 +148,7 @@ app.post('/api/v1/token', async function(req, res) {
         username: username,
         orgName: orgName
     }, app.get('secret'));
-
+	logger.debug('==========');
     let response = await helper.getRegisteredUsers(username, orgName, true);
     logger.debug('-- returned from registering the username %s for organization %s',username,orgName);
     if (response && typeof response !== 'string') {

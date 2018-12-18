@@ -496,6 +496,7 @@ return hfc.newDefaultKeyValueStore({
 */
 	logger.debug("=============start");
 	try {
+		logger.debug("=============start1:");
         var client = await getClientForOrg(userOrg);
         logger.debug('Successfully initialized the credential stores');
         // client can now act as an agent for organization Org1
