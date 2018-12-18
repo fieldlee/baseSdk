@@ -129,7 +129,7 @@ function getErrorMessage(field) {
 // Register and enroll user
 app.post('/api/v1/token', async function(req, res) {
     var username = req.body.username;
-    var orgName = req.body.orgName || "Org2";
+    var orgName = req.body.orgName || "sureOrg";
     var creatorFlag = req.body.creatorFlag || 0
     logger.debug('End point : /users');
     logger.debug('User name : ' + username);
@@ -148,13 +148,13 @@ app.post('/api/v1/token', async function(req, res) {
         orgName: orgName
     }, app.get('secret'));
 
-    let response = await helper.getRegisteredUser(username, orgName, true);
+    let response = await helper.getRegisteredUsers(username, orgName, true);
     logger.debug('-- returned from registering the username %s for organization %s',username,orgName);
     if (response && typeof response !== 'string') {
         logger.debug('Successfully registered the username %s for organization %s',username,orgName);
         response.token = token;
         if (creatorFlag == 1){
-            var file = "./fabric-client-kv-" + orgName.toLowerCase() + "/" + username
+            var file = "/var/fabric-client-kv-" + orgName.toLowerCase() + "/" + username
             var result=JSON.parse(fs.readFileSync(file));
             response.certificate = result.enrollment.identity.certificate
         }
