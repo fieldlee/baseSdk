@@ -199,7 +199,9 @@ var invokeProposal = async function(peersUrls, channelName, chaincodeName, funct
             args: args,
             chainId: channelName,
             txId: tx_id
-        };
+		};
+		logger.debug(util.format('\n============ channel: %s ============\n',channel));
+		logger.debug(util.format('\n============ request: %s ============\n',request));
 
         let results = await channel.sendTransactionProposal(request);
 
