@@ -153,9 +153,9 @@ var invokeChaincode = function(peerNames, channelName, chaincodeName, fcn, args,
 			logger.info(response);
 			logger.info('Successfully sent transaction to the orderer.');
 			// logger.info(returnJsonStr);
-			if (returnJsonStr !== null) {
-				return returnJsonStr;
-			}
+			// if (returnJsonStr !== null) {
+			// 	return returnJsonStr;
+			// }
 			response.transactionId = tx_id;
 			return response;
 		} else {
