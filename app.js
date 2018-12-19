@@ -82,7 +82,8 @@ app.use(function(req, res, next) {
         return next();
     }
 
-    var token = req.token;
+	var token = req.token;
+	logger.debug("token",token);
     jwt.verify(token, app.get('secret'), function(err, decoded) {
         if (err) {
             res.send({
