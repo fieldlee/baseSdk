@@ -37,13 +37,14 @@ var invokeChaincode = function(peerNames, channelName, chaincodeName, fcn, args,
 	var targets = (peerNames) ? helper.newPeers(peerNames, org) : undefined;
 	var tx_id = null;
 	var returnJsonStr = null;
-
+	var tx_id_string = null;
 //  username
 	// return helper.getOrgAdmin(org).then((user) => {
 	// return helper.getRegisteredUsers(username, org).then((member) => {
 	  return client.getUserContext(username, true).then((user) => {
 		// logger.debug(user);
 		tx_id = client.newTransactionID();
+		tx_id_string = tx_id.getTransactionID();
 		// logger.debug(util.format('Sending transaction "%j"', tx_id));
 		// send proposal to endorser
 		var request = {
@@ -152,12 +153,14 @@ var invokeChaincode = function(peerNames, channelName, chaincodeName, fcn, args,
 		if (response.status === 'SUCCESS') {
 			logger.info(response);
 			logger.info('Successfully sent transaction to the orderer.');
+			logger.info('txid:',tx_id_string);
 			// logger.info(returnJsonStr);
 			// if (returnJsonStr !== null) {
 			// 	return returnJsonStr;
 			// }
-			response.transactionId = tx_id;
-			return response;
+			let retJson = {};
+			retJson.transactionId = tx_id_string;
+			return retJson;
 		} else {
 			logger.error('Failed to order the transaction. Error code: ' + response.status);
 			return 'Failed to order the transaction. Error code: ' + response.status;
