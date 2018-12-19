@@ -608,7 +608,7 @@ app.post('/api/v1/save', async function(req, res) {
     let ret = [];
 
 
-    let invokePromise = invoke.invokeProposal(peersUrls, channelName, chaincodeName, functionName, args, username, orgName).then(message => {
+    let invokePromise = invoke.invokeChaincode(peersUrls, channelName, chaincodeName, functionName, args, username, orgName).then(message => {
             res.json(reqUtils.getResponse("操作成功",200, message));
         }).catch(err => {
         res.json(reqUtils.getErrorMsg(err.message));
