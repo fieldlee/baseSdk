@@ -486,7 +486,6 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 		});
 	}).then((user) => {
 		if (isJson && isJson === true) {
-			console.log(user);
 			var response = {
 				success: true,
 				secret: user._enrollmentSecret,
@@ -500,79 +499,7 @@ var getRegisteredUsers = function (username, userOrg, isJson) {
 		logger.error(util.format('Failed to get registered user: %s, error: %s', username, err.stack ? err.stack : err));
 		return '' + err;
 	});
-/**** 
-	logger.debug("=============start");
-	// try {
-	logger.debug("=============start1:");
-	var client = getClientForOrg(userOrg);
-	logger.debug('Successfully initialized the credential stores');
-	// client can now act as an agent for organization Org1
-	// first check to see if the user is already enrolled
-	client.getUserContext(username, true).then(function (user) {
-		if (user && user.isEnrolled()) {
-			logger.info('Successfully loaded member from persistence');
-		} else {
-			// user was not enrolled, so we will need an admin user object to register
-			logger.debug("=============1");
-			console.log(client);
-			client.setUserContext({username: "admin", password: "adminpw" }).then(function (adminUserObj) {
-				logger.debug("=============2");
-				let caClient = client.getCertificateAuthority();
-				logger.debug("=============3");
-				let affiliationService = caClient.newAffiliationService();
-				logger.debug("=============4");
-				affiliationService.getAll(adminUserObj).then(function (registeredAffiliations) {
-					logger.debug("=============5");
-					logger.info(registeredAffiliations.result.affiliations);
-					// create affiliation for org3/org4/...
-					if (!registeredAffiliations.result.affiliations.some(
-						x => x.name === userOrg.toLowerCase())) {
-						let affiliation = userOrg.toLowerCase() + '.department1';
-						logger.debug("=============6");
-					   affiliationService.create({
-							name: affiliation,
-							force: true
-						}, adminUserObj).then(function(result){
-							logger.debug("result:");
-							logger.debug(JSON.stringify(result));
-						});
-					}
-					logger.debug("=============7");
-					caClient.register({
-						enrollmentID: username,
-						affiliation: userOrg.toLowerCase() + '.department1'
-					}, adminUserObj).then(function(secret){
-						logger.debug("=============8");
-						logger.debug('Successfully got the secret for user %s', username);
-						client.setUserContext({ username: username, password: secret }).then(function(user){
-							if (user && user.isEnrolled) {
-								if (isJson && isJson === true) {
-									return reqUtils.getResponse(username + ' enrolled Successfully', 200);;
-								}
-							} else {
-								// throw new Error('User was not enrolled ');
-							}
-							logger.debug('Successfully enrolled username %s  and setUserContext on the client object', username);
-						});
-						
-					});
-				});
-			});
-		}
-		
-	});
-
-
-	// } catch(error) {
-	//     logger.error('Failed to get registered user: %s with error: %s', username, error.toString());
-	//     return 'failed '+error.toString();
-	// }
-	*/
 };
-
-
-
-
 
 var getOrgAdmin = function (userOrg) {
 	var admin = ORGS[userOrg].admin;
