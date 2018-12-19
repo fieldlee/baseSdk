@@ -21,7 +21,7 @@ var hfc = require('fabric-client');
 var Peer = require('fabric-client/lib/Peer.js');
 var helper = require('./helper.js');
 var logger = helper.getLogger('invoke-chaincode');
-logger.setLevel('ERROR');
+logger.setLevel('DEBUG');
 var EventHub = require('fabric-client/lib/EventHub.js');
 var ORGS = hfc.getConfigSetting('network-config');
 
@@ -189,8 +189,6 @@ var invokeProposal = async function(peersUrls, channelName, chaincodeName, funct
         tx_id_string = tx_id.getTransactionID();
         //args[4] = tx_id_string;
         // send proposal to endorser
-
-        
 
         var request = {
             targets: peersUrls,
