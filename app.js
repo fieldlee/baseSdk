@@ -589,7 +589,7 @@ app.post('/api/v1/save', async function(req, res) {
     //智能合约名称，默认kingland
     let chaincodeName = req.body.chaincodeName || "mbasechain";
     //peer节点url
-    let peersUrls = req.body.peersUrls || ["peer0.sureOrg.mbasechain.com"];
+    let peersUrls = req.body.peersUrls || ["peer0","peer1"];
     //智能合约方法名
     let functionName = req.body.functionName || "save";
     //用户
